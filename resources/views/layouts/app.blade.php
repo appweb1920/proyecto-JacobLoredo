@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -72,7 +73,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
             @yield('content')
         </main>
     </div>
