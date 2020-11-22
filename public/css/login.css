@@ -1,5 +1,5 @@
 body {
-  font-family: "Karla", sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   background-color: #d0d0ce;
   min-height: 110vh; 
   }
@@ -17,6 +17,12 @@ body {
 
   
 }
+.form-check {
+  position: relative;
+  display: block;
+  padding-left: 1.25rem;
+  padding-right: 5px;
+}
   .login-card-img {
     border-radius: 0;
     position: absolute;
@@ -28,7 +34,20 @@ body {
     padding: 85px 20px 0px; }
     @media (max-width: 422px) {
       .login-card .card-body {
-        padding: 35px 0px; } }
+        padding: 35px 15px; } 
+        .form-check {
+          position: relative;
+          display: block;
+          padding-left: 16.25rem;
+          padding-right: 5px;
+        }
+        .nav-item{
+          margin-top: 0px;
+        }
+        .nav-link{
+          width: auto;
+        }
+      }
   .login-card-description {
     font-size: 25px;
     color: #000;
@@ -77,7 +96,10 @@ body {
     margin-bottom: 60px; }
     @media (max-width: 767px) {
       .login-card-footer-text {
-        margin-bottom: 24px; } }
+        margin-bottom: 24px; 
+      }
+    
+    }
   .login-card-footer-nav a {
     font-size: 14px;
     color: #919aa3; }

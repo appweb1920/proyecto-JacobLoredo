@@ -15,14 +15,18 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" id="logo" href="{{ url('/') }}">
+                        
+                <i class="material-icons">face</i>
+            </a>
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -41,11 +45,18 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
+                        @if (Route::currentRouteName()=="login")
+                            
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a>
+                        </li>
+                        @endif
+                       
+                           
                             @if (Route::has('register'))
                                 <li class="nav-item">
+
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
@@ -73,7 +84,7 @@
             </div>
         </nav>
 
-        <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+        <main class="d-flex align-items-center min-vh-150 py-3 py-md-0">
             @yield('content')
         </main>
     </div>

@@ -7,14 +7,16 @@
         <div class="row">
           <div class="col-md-5">
            
-            <img src="\images\login.jpg" alt="login" class="login-card-img">
+            <img src="\images\ChicaLogin.jpg" alt="login" class="login-card-img">
           </div>
           <div class="col-md-7">
             <div class="card-body">
               <div class="brand-wrapper">
-                <img src="\images\logo.svg" alt="logo" class="logo">
+                <!--
+                    <img src="#" alt="logo" class="logo">
+                -->
               </div>
-              <p class="login-card-description">Sign into your account</p>
+              <p class="login-card-description">Inicia Sesión con tu cuenta</p>
               <form method="POST" action="{{ route('login') }}">
                 @csrf
                 
