@@ -33,6 +33,11 @@ body {
   .login-card .card-body {
     padding: 85px 20px 0px; }
     @media (max-width: 422px) {
+      .form-group {
+        display: block;
+        width: 100%;
+       
+      }
       .login-card .card-body {
         padding: 35px 15px; } 
         .form-check {
@@ -75,7 +80,7 @@ body {
       color: #919aa3; }
   .login-card .login-btn {
     padding: 13px 20px 12px;
-    background-color: #000;
+    background-color: #FF8056;
     border-radius: 4px;
     font-size: 17px;
     font-weight: bold;
@@ -83,9 +88,12 @@ body {
     color: #fff;
     margin-bottom: 24px; }
     .login-card .login-btn:hover {
-      border: 1px solid #000;
-      background-color: transparent;
-      color: #000; }
+      border: 1px solid tomato;
+      box-shadow: 0px 4px 12px tomato;
+      background-color: tomato;
+      color: white; 
+    transform: translateY(-4px);
+    }
   .login-card .forgot-password-link {
     font-size: 14px;
     color: #919aa3;
@@ -104,4 +112,9 @@ body {
     font-size: 14px;
     color: #919aa3; }
 
-
+#email{
+  
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
