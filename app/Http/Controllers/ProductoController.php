@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\producto;
+use App\categoria;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -66,9 +67,9 @@ class ProductoController extends Controller
      * @param  \App\producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(producto $producto)
+    public function edit( $id)
     {
-        //
+        return \view('EditarPR')->with('Producto',producto::find($id))->with('Categoria',categoria::all());
     }
 
     /**
@@ -78,9 +79,18 @@ class ProductoController extends Controller
      * @param  \App\producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, producto $producto)
+    public function update(Request $request,  $id)
     {
-        //
+    
+        $P=producto::find($id);
+        
+        $P->Nombre=$request->Pnombre;
+        $P->Descripcion=$request->Pdescripcion;
+        $P->Cantidad=$request->Pcantidad;
+        $P->Precio=$request->Pprecio;
+        $P->category_id=$request->categoria;
+        $P->save();
+        return \redirect('/productos');
     }
 
     /**
@@ -89,8 +99,10 @@ class ProductoController extends Controller
      * @param  \App\producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(producto $producto)
+    public function destroy($id)
     {
-        //
+        $P=producto::find($id);
+        $P->destroy(array('id',$id));
+        return \redirect('/productos');
     }
 }

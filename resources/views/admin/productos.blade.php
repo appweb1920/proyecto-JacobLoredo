@@ -160,8 +160,8 @@
                                 <td> {{$P->Precio}}</td>
                                 <td>{{$P->category->Nombre}}</td>
 								<td>
-									<a href="./EditarPR/{{$P->id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">create</i></a>
-									<a href="./EliminarPR/{{$P->id}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+									<a href="./EditarPR/{{$P->id}}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">create</i></a>
+									<a href="./EliminarPR/{{$P->id}}" class="delete" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                                 
 							</tr>

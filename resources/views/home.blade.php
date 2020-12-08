@@ -167,8 +167,8 @@
                                         @endif
                                         @endforeach</td>
 								<td >
-									<a href="./EditarDR/{{$U->id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">create</i></a>
-									<a href="./EliminarDR/{{$U->id}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+									<a href="./EditarUser/{{$U->id}}" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">create</i></a>
+									<a href="./EliminarUser/{{$U->id}}" class="delete" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                                 <td>hola</td>
 							</tr>

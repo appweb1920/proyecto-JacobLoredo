@@ -27,4 +27,10 @@ class HomeController extends Controller
         $users=User::all();
         return view('home')->with('Usuarios',$users);
     }
+    public function destroy($id)
+    {
+        $users=User::find($id);
+        $users->destroy(array('id',$id));
+        return \redirect('/home');
+    }
 }

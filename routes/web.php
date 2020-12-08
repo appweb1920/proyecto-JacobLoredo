@@ -23,6 +23,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/productos', 'ProductoController@index')->name('producto');
 Route::post('/productos','ProductoController@store');
+Route::get('/EditarPR/{id}','ProductoController@edit')->name('EditarPR');
+Route::post('/ActualizarPR/{id}','ProductoController@update');
+
+Route::get('/EliminarUser/{id}','HomeController@destroy');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
