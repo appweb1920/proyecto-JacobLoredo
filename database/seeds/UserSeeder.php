@@ -13,14 +13,6 @@ class UserSeeder extends Seeder
     public function run()
     {
        
-        $role = new Rol();
-        $role->name = 'admin';
-        $role->descripcion = 'Administrator';
-        $role->save();
-        $role = new Rol();
-        $role->name = 'user';
-        $role->descripcion = 'User';
-        $role->save();
         $user = new user();
         $user->name='Jacob';
         $user->email = 'yeicob_loredo@hotmail.com';

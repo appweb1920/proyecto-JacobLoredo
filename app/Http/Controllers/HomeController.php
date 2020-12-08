@@ -25,7 +25,6 @@ class HomeController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $users=User::all();
-       // \dd($request->user()->Roles()->firstWhere('name','admin')->Name);
         return view('home')->with('Usuarios',$users);
     }
 }
