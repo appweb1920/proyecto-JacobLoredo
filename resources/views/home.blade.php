@@ -51,8 +51,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('productos') }}">Lista de productos</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Dar de alta productos</a>
+                                <a class="nav-link" href="{{ route('producto') }}">Lista de productos</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">Categorias</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -98,8 +98,8 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <div class="small">Ingresaste como : ADMINISTRADOR</div>
+                        
                     </div>
                 </nav>
             </div>
@@ -182,7 +182,9 @@
                         
                            
                     </div>
+                    
                 </main>
+                
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">

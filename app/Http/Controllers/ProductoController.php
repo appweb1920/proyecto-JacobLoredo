@@ -16,7 +16,7 @@ class ProductoController extends Controller
     {
         $P=producto::all();
 
-        return \view('productos')->with('productos',$P);
+        return \view('admin.productos')->with('produ',$P);
     }
 
     /**
@@ -37,7 +37,16 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $P=new producto();
+        $P->Nombre=$request->Pnombre;
+        $P->Descripcion=$request->Pdescripcion;
+        $P->Cantidad=$request->Pcantidad;
+        $P->Precio=$request->Pprecio;
+        $P->category_id=$request->Recolector;
+        $P->save();
+        return \redirect()->back();
+
     }
 
     /**

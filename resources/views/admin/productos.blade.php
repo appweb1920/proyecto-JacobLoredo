@@ -41,7 +41,7 @@
                             <div class="sb-sidenav-menu-heading">Core</div>
                         <a class="nav-link" href="{{ route('home') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Productos
+                                Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -51,8 +51,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="#">Lista de productos</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Dar de alta productos</a>
+                                    <a class="nav-link" href="{{ route('producto') }}">Lista de productos</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">Categorias</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -98,8 +98,8 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <div class="small">Ingresaste como : ADMINISTRADOR</div>
+                       
                     </div>
                 </nav>
             </div>
@@ -114,13 +114,13 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                Usuario
+                                Lista de productos
                             </div>
                             
                             <div class="row">
                                 
                                 <div class="col-sm-12 col-md-12">
-                                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">add_circle_outline</i> <span>Agregar Usuario</span></a>
+                                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">add_circle_outline</i> <span>Agregar Producto</span></a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -129,48 +129,41 @@
                                         
                                         <thead>
                                             <tr>
+                                                
                                                 <th>Nombre</th>
-                                                <th>Correo</th>
-                                                <th>Rol</th>
                                                 <th>Descripcion</th>
+                                                <th>Cantidad</th>
+                                                <th>Precio</th>
+                                                <th>Categoria</th>
                                                 <th>Acciones</th>
-                                                <th>Salary</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th>Nombre</th>
-                                                <th>Correo</th>
-                                                <th>Rol</th>
                                                 <th>Descripcion</th>
+                                                <th>Cantidad</th>
+                                                <th>Precio</th>
+                                                <th>Categoria</th>
                                                 <th>Acciones</th>
-                                                <th>Salary</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
                                            
-                        @if (!is_null($Usuarios))
-                        @foreach ($Usuarios as $U)
+                        @if (!is_null($produ))
+                        @foreach ($produ as $P)
+                        
 							<tr>
-                                <td>{{$U->name}}</td>
-								<td>{{$U->email}}</td>
-                                <td> @foreach ($U->roles as $a)
-                                    @if ($U->id==$a->pivot->user_id)
-                                        {{$a->Name}}
-                                        @break;
-                                    @endif
-                                    @endforeach</td>
-                                    <td>@foreach ($U->roles as $a)
-                                        @if ($U->id==$a->pivot->user_id)
-                                            {{$a->Descripcion}}
-                                            @break;
-                                        @endif
-                                        @endforeach</td>
-								<td >
-									<a href="./EditarDR/{{$U->id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">create</i></a>
-									<a href="./EliminarDR/{{$U->id}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <td>{{$P->Nombre}}</td>
+								<td>{{$P->Descripcion}}</td>
+                                <td> {{$P->Cantidad}}</td>
+                                <td> {{$P->Precio}}</td>
+                                <td>{{$P->category->Nombre}}</td>
+								<td>
+									<a href="./EditarPR/{{$P->id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">create</i></a>
+									<a href="./EliminarPR/{{$P->id}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
-                                <td>hola</td>
+                                
 							</tr>
     					@endforeach
     				@endif
@@ -181,6 +174,51 @@
                         </div>
                         
                            
+                    </div>
+                    <div id="addEmployeeModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="\productos" method="POST">
+                                    @csrf
+                                    <div class="modal-header">						
+                                        <h4 class="modal-title">Agregar Producto</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">					
+                                        <div class="form-group">
+                                            <label>Nombre del producto</label>
+                                            <input type="text" class="form-control" required name='Pnombre'>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Descripcion</label>
+                                            <input type="text" class="form-control" required name ='Pdescripcion'>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Cantidad</label>
+                                            <input type="number" min="1" class="form-control" required name ='Pcantidad'>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Precio</label>
+                                            <input type='text' class="form-control" required name ='Pprecio'>
+                                        </div>
+                                        <label>Tipo de Categorias</label>
+                                        <label for="categoria"></label>
+                                        <select id="categoria"  name="categoria">
+                                        @if (!is_null($produ))
+                                            @foreach ($produ as $p)
+                                            <option value="{{$p->id}}">{{$p->id}}.-{{$p->category->Nombre}}</option>
+                                            @endforeach
+                                        @endif
+                                           
+                                        </select>                 
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                        <input type="submit" class="btn btn-success" value="Agregar">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

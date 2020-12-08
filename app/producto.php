@@ -12,6 +12,6 @@ class producto extends Model
 
     public function category()
     {
-        return $this->belongsTo(categoria::class)->withTimestamps();
+        return $this->belongsTo(categoria::class);
     }
 }
