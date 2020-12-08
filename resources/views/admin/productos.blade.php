@@ -41,7 +41,7 @@
                             <div class="sb-sidenav-menu-heading">Core</div>
                         <a class="nav-link" href="{{ route('home') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                Productos
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -51,7 +51,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('productos') }}">Lista de productos</a>
+                                    <a class="nav-link" href="#">Lista de productos</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Dar de alta productos</a>
                                 </nav>
                             </div>
@@ -148,7 +148,7 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            
+                                           
                         @if (!is_null($Usuarios))
                         @foreach ($Usuarios as $U)
 							<tr>

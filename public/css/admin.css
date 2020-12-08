@@ -141,7 +141,18 @@ strong {
 small {
   font-size: 80%;
 }
-
+.delete{
+  color: #F44336;
+}
+.delete:hover{
+  color: #f44336cc;
+}
+.edit:hover{
+  color: #ffc107da;
+}
+.edit{
+  color:#FFC107;
+}
 sub,
 sup {
   position: relative;
@@ -577,6 +588,8 @@ pre code {
   flex-wrap: wrap;
   margin-right: -0.75rem;
   margin-left: -0.75rem;
+  margin-top: 0.75rem;
+  align-self: flex-end;
 }
 
 .no-gutters {

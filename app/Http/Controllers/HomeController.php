@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +24,8 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);
-        return view('home');
+        $users=User::all();
+       // \dd($request->user()->Roles()->firstWhere('name','admin')->Name);
+        return view('home')->with('Usuarios',$users);
     }
 }

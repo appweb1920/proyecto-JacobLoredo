@@ -11,13 +11,6 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $role = new Rol();
-        $role->name = 'admin';
-        $role->descripcion = 'Administrator';
-        $role->save();
-        $role = new Rol();
-        $role->name = 'user';
-        $role->descripcion = 'User';
-        $role->save();
+        
     }
 }
