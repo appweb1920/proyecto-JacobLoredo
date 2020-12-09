@@ -82,4 +82,8 @@ class CategoriaController extends Controller
     {
         //
     }
+    public function showListCategoria(Request $request)
+    {
+        return (categoria::all())->toJson();
+    }
 }

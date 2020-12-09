@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
 use App\Rol;
+use Validator;
+use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     /**
@@ -24,13 +26,26 @@ class AuthController extends Controller
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed'
         ]);
-        $user = new User([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-            
+        //dd($request);
+        $user = new User();
+        $user->user_token = implode('-', [
+            "Abarrotes",
+            uniqid(''),
+            bin2hex(random_bytes(4)),
+            bin2hex(random_bytes(2)),
+            bin2hex(chr((ord(random_bytes(1)) & 0x0F) | 0x40)) . bin2hex(random_bytes(1)),
+            bin2hex(chr((ord(random_bytes(1)) & 0x3F) | 0x80)) . bin2hex(random_bytes(1)),
+            bin2hex(random_bytes(6))
         ]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password !== $request->password_confirmation)
+            return response()->json(array(
+                        "message" =>"Las contraseñas tienen que ser iguales",
+                    ), 200);
+        $user->password = bcrypt($request->password);
         $user->save();
+        
         $user->roles()->attach(Rol::where('name', 'user')->first());
         return response()->json([
             'message' => 'Successfully created user!'
@@ -49,29 +64,36 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean'
-        ]);
-        $credentials = request(['email', 'password']);
-        if(!Auth::attempt($credentials))
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
-        $user = $request->user();
-        $tokenResult = $user->createToken('Personal Access Token');
-        $token = $tokenResult->token;
-        if ($request->remember_me)
-            $token->expires_at = Carbon::now()->addWeeks(1);
-        $token->save();
-        return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse(
-                $tokenResult->token->expires_at
-            )->toDateTimeString()
-        ]);
+        
+        Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string|max:255'
+        ])->validate();
+
+        $user = user::where('email', $request['email'])->first();
+      
+        if ($user) {
+            if (Hash::check($request['password'], $user->password)) {
+                return response()->json(
+                    array(
+                        "success" => true,
+                        "message" => "Login",
+                        "user_token" => $user->user_token
+                    ), 200);
+            }
+            return response()->json(
+                array(
+                    "success" => false,
+                    "message" => "Tu contraseña es Incorrecta"
+                ), 200);
+        }
+        return response()->json(
+            array(
+                "success" => false,
+                "message" => "Tu email no existe en nuestro registro"
+            ), 200);
+            
+      
     }
   
     /**
@@ -94,6 +116,6 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        return Datatables::of(user::all())->toJson();
     }
 }

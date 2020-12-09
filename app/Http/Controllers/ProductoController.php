@@ -6,6 +6,7 @@ use App\producto;
 use App\categoria;
 use Illuminate\Http\Request;
 
+
 class ProductoController extends Controller
 {
     /**
@@ -104,5 +105,9 @@ class ProductoController extends Controller
         $P=producto::find($id);
         $P->destroy(array('id',$id));
         return \redirect('/productos');
+    }
+    public function showListProduct(Request $request)
+    {
+        return (producto::all())->toJson();
     }
 }
