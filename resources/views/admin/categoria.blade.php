@@ -158,8 +158,8 @@
                                 </td>
                                 
 								<td>
-									<a href="./EditarPR/{{$c->id}}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">create</i></a>
-									<a href="./EliminarPR/{{$c->id}}" class="delete" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+									<a href="./EditarCat/{{$c->id}}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">create</i></a>
+									<a href="./EliminarCat/{{$c->id}}" class="delete" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                                 
 							</tr>
@@ -176,42 +176,17 @@
                     <div id="addEmployeeModal" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form action="\productos" method="POST" enctype="multipart/form-data" >
+                                <form action="\categoria" method="POST"  >
                                     @csrf
                                     <div class="modal-header">						
-                                        <h4 class="modal-title">Agregar Producto</h4>
+                                        <h4 class="modal-title">Agregar Categoria</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">					
                                         <div class="form-group">
-                                            <label>Nombre del producto</label>
-                                            <input type="text" class="form-control" required name='Pnombre'>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Descripcion</label>
-                                            <input type="text" class="form-control" required name ='Pdescripcion'>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Cantidad</label>
-                                            <input type="number" min="1" class="form-control" required name ='Pcantidad'>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Precio</label>
-                                            <input type='text' class="form-control" required name ='Pprecio'>
-                                        </div>
-                                        <label>Tipo de Categorias</label>
-                                        <label for="categoria"></label>
-                                        <select id="categoria"  name="categoria">
-                                        @if (!is_null($categoria))
-                                            @foreach ($categoria as $c)
-                                            <option value="{{$c->id}}">{{$c->id}}.-{{$c->Nombre}}</option>
-                                            @endforeach
-                                        @endif
-                                           
-                                        </select>
-                                       
-                                         
-                                                
+                                            <label>Nombre de la categoria</label>
+                                            <input type="text" class="form-control" required name='Cnombre'>
+                                        </div>       
                                     </div>
                                     <div class="modal-footer">
                                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

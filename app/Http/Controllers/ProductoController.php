@@ -18,7 +18,7 @@ class ProductoController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $P=producto::all();
-       
+
         return \view('admin.productos')->with('produ',$P);
     }
 
@@ -40,7 +40,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->user()->authorizeRoles(['admin']);
         $P=new producto();
         $P->Nombre=$request->Pnombre;
         $P->Descripcion=$request->Pdescripcion;
@@ -53,6 +53,8 @@ class ProductoController extends Controller
             $nombrearchivo  = $file->getClientOriginalName();
             $file->move(public_path("img/productos/"),$nombrearchivo);
             $P->Url_imag= $nombrearchivo;
+        }else{
+            $P->Url_imag= "img/productos/default.jpg";
         }
         
         $P->save();
@@ -79,6 +81,7 @@ class ProductoController extends Controller
      */
     public function edit( $id)
     {
+        $request->user()->authorizeRoles(['admin']);
         return \view('EditarPR')->with('Producto',producto::find($id))->with('Categoria',categoria::all());
     }
 
@@ -91,7 +94,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request,  $id)
     {
-    
+        $request->user()->authorizeRoles(['admin']);
         $P=producto::find($id);
         
         $P->Nombre=$request->Pnombre;
@@ -100,7 +103,14 @@ class ProductoController extends Controller
         $P->Precio=$request->Pprecio;
         $P->category_id=$request->categoria;
         $P->categoria_id=$request->categoria;
-
+        if ($request->hasFile('urlfoto')){
+            $file= $request->file("urlfoto");
+            $nombrearchivo  = $file->getClientOriginalName();
+            $file->move(public_path("img/"),$nombrearchivo);
+            $P->Url_imag= "img/productos".$nombrearchivo;
+        }else{
+            $P->Url_imag= "img/productos/default.jpg";
+        }
         $P->save();
         return \redirect('/productos');
     }
@@ -113,6 +123,7 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
+        $request->user()->authorizeRoles(['admin']);
         $P=producto::find($id);
         $P->destroy(array('id',$id));
         return \redirect('/productos');

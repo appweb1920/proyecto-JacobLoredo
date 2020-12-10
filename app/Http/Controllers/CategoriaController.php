@@ -15,7 +15,6 @@ class CategoriaController extends Controller
      */
     public function index(Request $request)
     {
-        
         $request->user()->authorizeRoles(['admin']);
         $c=categoria::all();
         
@@ -40,7 +39,11 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->user()->authorizeRoles(['admin']);
+        $C=new categoria();
+        $C->Nombre=$request->Cnombre;
+        $C->save();
+        return \redirect()->back();
     }
 
     /**
@@ -51,7 +54,7 @@ class CategoriaController extends Controller
      */
     public function show(categoria $categoria)
     {
-        //
+        $request->user()->authorizeRoles(['admin']);
     }
 
     /**
@@ -60,9 +63,10 @@ class CategoriaController extends Controller
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(categoria $categoria)
+    public function edit($id)
     {
-        //
+        
+        return \view('/admin.EditarCat')->with('Categoria',categoria::find($id));
     }
 
     /**
@@ -72,9 +76,13 @@ class CategoriaController extends Controller
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, categoria $categoria)
+    public function update(Request $request, $id)
     {
-        //
+        $request->user()->authorizeRoles(['admin']);
+        $C=categoria::find($id);
+        $C->Nombre=$request->Cnombre;
+        $C->save();
+        return \redirect('/categoria');
     }
 
     /**
@@ -83,9 +91,12 @@ class CategoriaController extends Controller
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(categoria $categoria)
+    public function destroy(Request $request, $id)
     {
-        //
+        $request->user()->authorizeRoles(['admin']);
+        $C=categoria::find($id);
+        $C->destroy(array('id',$id));
+        return \redirect('/categoria');
     }
     public function showListCategoria(Request $request)
     {

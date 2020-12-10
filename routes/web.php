@@ -18,18 +18,23 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/productos', 'ProductoController@index')->name('producto')->middleware('auth');
-Route::get('/categoria', 'CategoriaController@index')->name('categoria')->middleware('auth');
 Route::post('/productos','ProductoController@store');
 Route::get('/EditarPR/{id}','ProductoController@edit')->name('EditarPR');
 Route::post('/ActualizarPR/{id}','ProductoController@update');
+Route::get('/EliminarPR/{id}','ProductoController@destroy');
 
 Route::get('/EliminarUser/{id}','HomeController@destroy');
 
-Auth::routes();
+Route::get('/categoria', 'CategoriaController@index')->name('categoria')->middleware('auth');
+Route::post('/categoria', 'CategoriaController@store');
+Route::get('/EditarCat/{id}', 'CategoriaController@edit')->name('EditarCat')->middleware('auth');
+Route::get('/ActualizarCat/{id}', 'CategoriaController@update');
+Route::get('/EliminarCat/{id}', 'CategoriaController@destroy');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -19,7 +19,7 @@ class ProductoSeeder extends Seeder
         $p->category_id = 1;
         $p->categoria_id = 1;
         
-        $p->Url_imag="\img\uvasBlancas.jpg";
+        $p->Url_imag="\img\productos/uvasBlancas.jpg";
         $p->save();
 
         $p = new producto();
@@ -29,7 +29,7 @@ class ProductoSeeder extends Seeder
         $p->Precio="163.00";
         $p->category_id = 2;
         $p->categoria_id = 2;
-        $p->Url_imag="\img\CervezaVictoria12Lata.jpg";
+        $p->Url_imag="\img\productos/CervezaVictoria12Lata.jpg";
         $p->save();
         
         $p = new producto();
@@ -39,7 +39,7 @@ class ProductoSeeder extends Seeder
         $p->Precio="96.50";
         $p->category_id = 3;
         $p->categoria_id = 3;
-        $p->Url_imag="\img\cafe_nescafe.jpg";
+        $p->Url_imag="\img\productos/cafe_nescafe.jpg";
         $p->save();
 
     }
