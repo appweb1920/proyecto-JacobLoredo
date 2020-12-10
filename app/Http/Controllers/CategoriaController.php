@@ -12,9 +12,12 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $request->user()->authorizeRoles(['admin']);
+        $c=categoria::all();
+
+        return \view('admin.categoria')->with('categoria',$c);
     }
 
     /**
@@ -24,7 +27,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

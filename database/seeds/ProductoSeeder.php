@@ -17,6 +17,7 @@ class ProductoSeeder extends Seeder
         $p->Cantidad=10;
         $p->Precio="74.52";
         $p->category_id = 1;
+        $p->Url_imag="\img\uvasBlancas.jpg";
         $p->save();
 
         $p = new producto();
@@ -25,14 +26,16 @@ class ProductoSeeder extends Seeder
         $p->Cantidad=10;
         $p->Precio="163.00";
         $p->category_id = 2;
+        $p->Url_imag="\img\CervezaVictoria12Lata.jpg";
         $p->save();
-
+        
         $p = new producto();
         $p->Nombre='Café soluble Nescafé clásico 225 g';
         $p->Descripcion = 'Si lo que quieres es comenzar tu día con la energía suficiente para realizar tu actividades al máximo, este café es para ti. Se trata del delicioso sabor de Nescafé clásico en su presentación de 225 gramos.';
         $p->Cantidad=10;
         $p->Precio="96.50";
         $p->category_id = 3;
+        $p->Url_imag="\img\cafe_nescafe.jpg";
         $p->save();
 
     }

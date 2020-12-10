@@ -52,7 +52,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{ route('producto') }}">Lista de productos</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Categorias</a>
+                                    <a class="nav-link" href={{ route('categoria') }}>Categorias</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -129,7 +129,7 @@
                                         
                                         <thead>
                                             <tr>
-                                                
+                                                <th>Producto</th>
                                                 <th>Nombre</th>
                                                 <th>Descripcion</th>
                                                 <th>Cantidad</th>
@@ -140,6 +140,7 @@
                                         </thead>
                                         <tfoot>
                                             <tr>
+                                                <th>Producto</th>
                                                 <th>Nombre</th>
                                                 <th>Descripcion</th>
                                                 <th>Cantidad</th>
@@ -154,6 +155,9 @@
                         @foreach ($produ as $P)
                         
 							<tr>
+                                <td>
+                                    <img src="{{$P->Url_imag}}" alt="" class="img-fluid" alt="Responsive image">
+                                </td>
                                 <td>{{$P->Nombre}}</td>
 								<td>{{$P->Descripcion}}</td>
                                 <td> {{$P->Cantidad}}</td>
@@ -178,7 +182,7 @@
                     <div id="addEmployeeModal" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form action="\productos" method="POST">
+                                <form action="\productos" method="POST" enctype="multipart/form-data" >
                                     @csrf
                                     <div class="modal-header">						
                                         <h4 class="modal-title">Agregar Producto</h4>
@@ -210,13 +214,20 @@
                                             @endforeach
                                         @endif
                                            
-                                        </select>                 
+                                        </select>
+                                       
+                                            <div class="form-group">
+                                                <strong>Imagen:</strong>
+                                                <input type="file" name="urlfoto">
+                                            </div>
+                                                
                                     </div>
                                     <div class="modal-footer">
                                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                         <input type="submit" class="btn btn-success" value="Agregar">
                                     </div>
                                 </form>
+                               
                             </div>
                         </div>
                     </div>

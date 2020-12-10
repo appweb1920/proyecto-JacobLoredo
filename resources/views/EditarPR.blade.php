@@ -36,7 +36,7 @@
                     </select>                 
                 </div>
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <a class="btn btn-default" href="/productos" role="button">Cancel</a>
                     <input type="submit" class="btn btn-success" value="Agregar">
                 </div>
             </form>
