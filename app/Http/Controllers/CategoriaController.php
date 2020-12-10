@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\categoria;
+use App\producto;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -14,9 +15,10 @@ class CategoriaController extends Controller
      */
     public function index(Request $request)
     {
+        
         $request->user()->authorizeRoles(['admin']);
         $c=categoria::all();
-
+        
         return \view('admin.categoria')->with('categoria',$c);
     }
 

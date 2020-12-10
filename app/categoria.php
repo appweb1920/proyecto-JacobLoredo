@@ -9,8 +9,8 @@ class categoria extends Model
     protected $table = 'categorias';
 
     protected $fillable=['Nombre'];
-    public function products()
+    public function producto()
     {
-        return $this->hasMany(producto::class)->withTimestamps();
+        return $this->hasMany(producto::class);
     }
 }

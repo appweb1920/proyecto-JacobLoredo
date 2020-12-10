@@ -18,7 +18,7 @@ class ProductoController extends Controller
     {
         $request->user()->authorizeRoles(['admin']);
         $P=producto::all();
-
+       
         return \view('admin.productos')->with('produ',$P);
     }
 
@@ -47,6 +47,7 @@ class ProductoController extends Controller
         $P->Cantidad=$request->Pcantidad;
         $P->Precio=$request->Pprecio;
         $P->category_id=$request->categoria;
+        $P->categoria_id=$request->categoria;
         if ($request->hasFile('urlfoto')){
             $file= $request->file("urlfoto");
             $nombrearchivo  = $file->getClientOriginalName();
@@ -98,6 +99,8 @@ class ProductoController extends Controller
         $P->Cantidad=$request->Pcantidad;
         $P->Precio=$request->Pprecio;
         $P->category_id=$request->categoria;
+        $P->categoria_id=$request->categoria;
+
         $P->save();
         return \redirect('/productos');
     }

@@ -20,9 +20,14 @@ class CreateProductosTable extends Migration
             $table->bigInteger('Cantidad');
             $table->string('Precio');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('categoria_id');
             $table->string('Url_imag')->nullable();
             $table->timestamps();
             $table->foreign('category_id')
+            ->references('id')
+            ->on('productos')
+            ->onDelete('cascade');
+            $table->foreign('categoria_id')
             ->references('id')
             ->on('productos')
             ->onDelete('cascade');

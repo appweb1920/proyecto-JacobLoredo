@@ -1,7 +1,7 @@
 @extends('admin.head')
 
 
-            <form action="/ActualizarPR/{{$Producto->id}}" method="post">
+            <form action="/ActualizarPR/{{$Producto->id}}" method="post" enctype="multipart/form-data" >
                 @csrf
                 <div class="modal-header">						
                     <h4 class="modal-title">Editar Producto</h4>
@@ -33,7 +33,11 @@
                         @endforeach
                     @endif
                        
-                    </select>                 
+                    </select> 
+                    <div class="form-group">
+                        <strong>Imagen:</strong>
+                        <input type="file" name="urlfoto">
+                    </div>                
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-default" href="/productos" role="button">Cancel</a>
