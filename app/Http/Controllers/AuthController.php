@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
 use App\Rol;
+use App\categoria;
 use Validator;
 use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
@@ -116,6 +117,12 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return Datatables::of(user::all())->toJson();
+        return user::all()->toJson();
+    }
+    public function ProductosXCategoria(Request $request,$id)
+    {
+        $categoria=categoria::find($id);
+        
+        return $categoria->producto->toJson();
     }
 }

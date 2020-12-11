@@ -19,7 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('/listproductos','ProductoController@showListProduct');
 Route::post('/listcategorias','CategoriaController@showListCategoria');
-
+Route::post('/user','AuthController@user');
+Route::post('/productosCategoria/{id}','AuthController@ProductosXCategoria');
+Route::post('/carrito/{id_user}/{id_producto}','CarritoController@AgregarProductoCarrito');
+Route::post('/carrito/{id_user}','CarritoController@ShowCarrito');
+Route::post('/EliminarCarrito/{id_user}/{id_producto}','CarritoController@EliminarProductoCarrito');
 Route::group([
     'prefix' => 'auth'
 ], function () {

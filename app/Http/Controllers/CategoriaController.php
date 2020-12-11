@@ -81,6 +81,7 @@ class CategoriaController extends Controller
         $request->user()->authorizeRoles(['admin']);
         $C=categoria::find($id);
         $C->Nombre=$request->Cnombre;
+       
         $C->save();
         return \redirect('/categoria');
     }
@@ -91,7 +92,7 @@ class CategoriaController extends Controller
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy( Request $request,$id)
     {
         $request->user()->authorizeRoles(['admin']);
         $C=categoria::find($id);

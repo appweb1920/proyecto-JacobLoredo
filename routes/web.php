@@ -33,7 +33,7 @@ Route::get('/EliminarUser/{id}','HomeController@destroy');
 Route::get('/categoria', 'CategoriaController@index')->name('categoria')->middleware('auth');
 Route::post('/categoria', 'CategoriaController@store');
 Route::get('/EditarCat/{id}', 'CategoriaController@edit')->name('EditarCat')->middleware('auth');
-Route::get('/ActualizarCat/{id}', 'CategoriaController@update');
+Route::post('/ActualizarCat/{id}', 'CategoriaController@update');
 Route::get('/EliminarCat/{id}', 'CategoriaController@destroy');
 
 Route::get('/home', 'HomeController@index')->name('home');

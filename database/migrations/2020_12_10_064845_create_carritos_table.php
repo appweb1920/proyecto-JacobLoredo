@@ -14,9 +14,22 @@ class CreateCarritosTable extends Migration
     public function up()
     {
         Schema::create('carritos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('producto_id');
+            
             $table->timestamps();
+            $table->foreign('producto_id')
+            ->references('id')
+            ->on('productos')
+            ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
+    
     }
 
     /**

@@ -14,4 +14,8 @@ class producto extends Model
     {
         return $this->belongsTo(categoria::class);
     }
+    public function carrito()
+    {
+        return $this->belongsToMany(Carrito::class)->withTimestamps();
+    }
 }

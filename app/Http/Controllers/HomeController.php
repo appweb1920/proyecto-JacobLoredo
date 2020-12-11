@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\producto;
+use App\Carrito;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,4 +36,5 @@ class HomeController extends Controller
         $users->destroy(array('id',$id));
         return \redirect('/home');
     }
+    
 }

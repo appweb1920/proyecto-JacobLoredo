@@ -36,7 +36,7 @@
                     </select> 
                     <div class="form-group">
                         <strong>Imagen:</strong>
-                        <input type="file" name="urlfoto">
+                        <input type="file" name="urlfoto" id="imgp">
                     </div>                
                 </div>
                 <div class="modal-footer">

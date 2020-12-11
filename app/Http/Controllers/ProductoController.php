@@ -52,7 +52,7 @@ class ProductoController extends Controller
             $file= $request->file("urlfoto");
             $nombrearchivo  = $file->getClientOriginalName();
             $file->move(public_path("img/productos/"),$nombrearchivo);
-            $P->Url_imag= $nombrearchivo;
+            $P->Url_imag= "img/productos/".$nombrearchivo;
         }else{
             $P->Url_imag= "img/productos/default.jpg";
         }
@@ -79,7 +79,7 @@ class ProductoController extends Controller
      * @param  \App\producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit(Request $request, $id)
     {
         $request->user()->authorizeRoles(['admin']);
         return \view('EditarPR')->with('Producto',producto::find($id))->with('Categoria',categoria::all());
@@ -106,10 +106,10 @@ class ProductoController extends Controller
         if ($request->hasFile('urlfoto')){
             $file= $request->file("urlfoto");
             $nombrearchivo  = $file->getClientOriginalName();
-            $file->move(public_path("img/"),$nombrearchivo);
-            $P->Url_imag= "img/productos".$nombrearchivo;
+            $file->move(public_path("img/productos"),$nombrearchivo);
+            $P->Url_imag= "img/productos/".$nombrearchivo;
         }else{
-            $P->Url_imag= "img/productos/default.jpg";
+        
         }
         $P->save();
         return \redirect('/productos');
@@ -121,10 +121,11 @@ class ProductoController extends Controller
      * @param  \App\producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         $request->user()->authorizeRoles(['admin']);
         $P=producto::find($id);
+       
         $P->destroy(array('id',$id));
         return \redirect('/productos');
     }
