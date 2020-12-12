@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//La pagina principal solo funciona para el administeador el usuario por defecto esta en el seeder
+//
+//igual se creo otro para revision=profesor@hotmail.com contraseña=12345678
 Route::get('/', function () {
     return view('welcome');
 });

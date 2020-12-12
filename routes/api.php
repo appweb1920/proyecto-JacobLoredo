@@ -24,6 +24,7 @@ Route::post('/productosCategoria/{id}','AuthController@ProductosXCategoria');
 Route::post('/carrito/{id_user}/{id_producto}','CarritoController@AgregarProductoCarrito');
 Route::post('/carrito/{id_user}','CarritoController@ShowCarrito');
 Route::post('/EliminarCarrito/{id_user}/{id_producto}','CarritoController@EliminarProductoCarrito');
+Route::post('/Compra/{id_user}','CarritoController@ConfirmarCompra');
 Route::group([
     'prefix' => 'auth'
 ], function () {

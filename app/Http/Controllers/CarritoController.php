@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Carrito;
 use App\producto;
 use App\User;
+use App\Venta;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -13,6 +14,7 @@ class CarritoController extends Controller
     {
         
     }
+    //muestra elcarrito de 1 solo usuario
     public function ShowCarrito($id_user){
         
         $user=User::find($id_user);
@@ -29,6 +31,7 @@ class CarritoController extends Controller
         return $data;
 
     }
+    //Agrega un producto al carrito junto al id del usuario, regresa todo el carrito completo para confirmar que se agrego
     public function AgregarProductoCarrito($id_user,$id_producto){
         
         $users=User::find($id_user);
@@ -41,6 +44,7 @@ class CarritoController extends Controller
         return (Carrito::all())->toJson();
 
     }
+    //elimina un producto de 1 usuario en especifico
     public function EliminarProductoCarrito($id_user,$id_producto){
         
         $users=User::find($id_user);
@@ -52,7 +56,35 @@ class CarritoController extends Controller
                 break;
             }
         }
+      
+
+        
         return (Carrito::all())->toJson();
+
+    }
+    //confirma la compra del usuario y regresa el arreglo de los productos que compro y los elimina de la base de datos carrito
+    public function ConfirmarCompra($id_user){
+        $user=User::find($id_user);
+        $venta=new Venta();
+        $carrito=Carrito::where('user_id',$id_user)->get();
+        $precioF=0.0;
+        $data=array();
+        foreach($carrito as $c){
+            if($c->user_id==$id_user){
+                $producto=producto::find($c->producto_id);
+                $producto->Cantidad-=1;
+                
+                $precioF+=floatval($producto->Precio);
+                $producto->save();
+                array_push($data,$producto);  
+                $c->destroy(array('id',$c->id));
+            }
+        }
+        $venta->Total=$precioF;
+        
+        array_push($data,$venta);  
+        return $data;
+       
     }
     public function create()
     {
