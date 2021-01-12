@@ -39,16 +39,24 @@ class AuthController extends Controller
             bin2hex(random_bytes(6))
         ]);
         $user->name = $request->name;
+        $user->Direccion = $request->Direccion;
         $user->email = $request->email;
         if ($request->password !== $request->password_confirmation)
             return response()->json(array(
+                        'success' => false,
                         "message" =>"Las contraseñas tienen que ser iguales",
                     ), 200);
         $user->password = bcrypt($request->password);
         $user->save();
+       
         
         $user->roles()->attach(Rol::where('name', 'user')->first());
+       
+        $success['token'] = $user->user_token;
         return response()->json([
+            'success' => true,
+            'token'=>$success,
+            'user' => $user,
             'message' => 'Successfully created user!'
         ], 201);
     }
@@ -104,6 +112,7 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
+      
         $request->user()->token()->revoke();
         return response()->json([
             'message' => 'Successfully logged out'
@@ -119,10 +128,26 @@ class AuthController extends Controller
     {
         return user::all()->toJson();
     }
+    /**
+     * Funcion que regresa los productos de una categoria
+     *
+     * @param Request $request
+     * @param [type] $id
+     * @return JSON
+     */
     public function ProductosXCategoria(Request $request,$id)
     {
         $categoria=categoria::find($id);
         
         return $categoria->producto->toJson();
+    }
+    public function getUser(Request $request)
+    {
+        
+        $user = user::where('user_token', $request['token'])->first();
+        return response()->json(array(
+                    "success" => true,
+                    "user" => $user
+                ), 200);
     }
 }

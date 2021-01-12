@@ -21,6 +21,10 @@ class CategoriaSeeder extends Seeder
 
         $categoria = new categoria();
         $categoria->Nombre = 'Jugos y Bebidas';
+        $categoria->save();
+        
+        $categoria = new categoria();
+        $categoria->Nombre = 'Farmacia';
        
         $categoria->save();
     }

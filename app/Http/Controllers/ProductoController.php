@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 use App\producto;
 use App\categoria;
 use Illuminate\Http\Request;
-
-
 class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -21,20 +18,8 @@ class ProductoController extends Controller
 
         return \view('admin.productos')->with('produ',$P);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -55,24 +40,10 @@ class ProductoController extends Controller
             $P->Url_imag= "img/productos/".$nombrearchivo;
         }else{
             $P->Url_imag= "img/productos/default.jpg";
-        }
-        
+        } 
         $P->save();
         return \redirect()->back();
-
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\producto  $producto
-     * @return \Illuminate\Http\Response
-     */
-    public function show(producto $producto)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -129,8 +100,18 @@ class ProductoController extends Controller
         $P->destroy(array('id',$id));
         return \redirect('/productos');
     }
+    /**
+     * Funcion para regresar todos los productos como JSON
+     *
+     * @param Request $request
+     * @return JSON
+     */
     public function showListProduct(Request $request)
     {
-        return (producto::all())->toJson();
+        $producto = producto::all();
+        return response()->json(array(
+            "success" => true,
+            "productos" => $producto
+        ), 200);
     }
 }

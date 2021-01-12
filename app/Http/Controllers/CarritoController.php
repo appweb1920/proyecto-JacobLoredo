@@ -28,7 +28,11 @@ class CarritoController extends Controller
                 array_push($data,$producto);  
             }
         }
-        return $data;
+        return response()->json(array(
+            "success" => true,
+            "productos" => $data
+        ), 200);
+        
 
     }
     //Agrega un producto al carrito junto al id del usuario, regresa todo el carrito completo para confirmar que se agrego
@@ -41,7 +45,11 @@ class CarritoController extends Controller
         $Carrito->producto_id=$producto->id;
 
         $Carrito->save();
-        return (Carrito::all())->toJson();
+        return response()->json(array(
+            "success" => true,
+            "productos" => $Carrito
+        ), 200);
+        
 
     }
     //elimina un producto de 1 usuario en especifico
@@ -58,8 +66,11 @@ class CarritoController extends Controller
         }
       
 
-        
-        return (Carrito::all())->toJson();
+        return response()->json(array(
+            "success" => true,
+            "productos" => $carrito
+        ), 200);
+        //return (Carrito::all())->toJson();
 
     }
     //confirma la compra del usuario y regresa el arreglo de los productos que compro y los elimina de la base de datos carrito
@@ -82,43 +93,14 @@ class CarritoController extends Controller
         }
         $venta->Total=$precioF;
         
-        array_push($data,$venta);  
-        return $data;
-       
-    }
-    public function create()
-    {
+        array_push($data,$venta); 
+        $venta->save();
+        return response()->json(array(
+            "success" => true,
+            "productos" => $data
+        ), 200);
         
-    }
-
-    
-    public function store(Request $request)
-    {
        
-    }
-
-    
-    public function show(Carrito $carrito)
-    {
-       
-    }
-
-    
-    public function edit($id)
-    {
-        
-        
-    }
-
-    public function update(Request $request, $id)
-    {
-           
-    }
-
-    
-    public function destroy( Request $request,$id)
-    {
-
     }
     
 }

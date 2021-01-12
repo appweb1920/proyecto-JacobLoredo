@@ -8,7 +8,8 @@ class CreateCategoriasTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * id->identificador unico de la categoria.
+     * NOmbre->Nombre de la categoria.
      * @return void
      */
     public function up()

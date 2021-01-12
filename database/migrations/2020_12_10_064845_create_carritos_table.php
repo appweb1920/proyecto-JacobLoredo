@@ -8,7 +8,9 @@ class CreateCarritosTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * id->identificador unico del carrito.
+     * user_id->id del usuario que tiene un producto en el carrito.
+     * producto_id->id del producto que esta en el carrito.
      * @return void
      */
     public function up()

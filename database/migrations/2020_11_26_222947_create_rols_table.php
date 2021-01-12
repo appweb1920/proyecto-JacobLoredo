@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -8,7 +7,10 @@ class CreateRolsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *Create rols table
+     *id->identificador unico del rol.
+     *name->Nombre del rol.
+     *Descripcion-> Descripcion del rol
      * @return void
      */
     public function up()

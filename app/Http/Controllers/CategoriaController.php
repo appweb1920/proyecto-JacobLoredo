@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class CategoriaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the categorias.
      *
      * @return \Illuminate\Http\Response
      */
@@ -20,19 +20,8 @@ class CategoriaController extends Controller
         
         return \view('admin.categoria')->with('categoria',$c);
     }
-
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Guarda una nueva categoria.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -47,7 +36,7 @@ class CategoriaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra una categoria en especifico
      *
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
@@ -58,8 +47,7 @@ class CategoriaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
+     * Muestra el form para modificar una categoria
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
@@ -68,10 +56,8 @@ class CategoriaController extends Controller
         
         return \view('/admin.EditarCat')->with('Categoria',categoria::find($id));
     }
-
     /**
-     * Update the specified resource in storage.
-     *
+     * Actualiza la categoria que se modifico
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
@@ -85,10 +71,8 @@ class CategoriaController extends Controller
         $C->save();
         return \redirect('/categoria');
     }
-
     /**
-     * Remove the specified resource from storage.
-     *
+     * Elimina la categoria que se especifico
      * @param  \App\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
@@ -99,8 +83,18 @@ class CategoriaController extends Controller
         $C->destroy(array('id',$id));
         return \redirect('/categoria');
     }
+    /**
+     * Muestra la lista de de todas las categorias como JSON
+     * @param Request $request
+     * @return JSON
+     */
     public function showListCategoria(Request $request)
     {
-        return (categoria::all())->toJson();
+        $categoria = categoria::all();
+        return response()->json(array(
+            "success" => true,
+            "categorias" => $categoria
+        ), 200);
+        
     }
 }
